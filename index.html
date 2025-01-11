@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şişe Tasarımı</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(45deg, #6C72FF, #5BC0EB);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-align: center;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    #canvas-container {
+      width: 400px;
+      height: 500px;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      margin-right: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      max-width: 250px;
+    }
+
+    .slider-container {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    input[type="file"], .slider {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background:black;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="file"]:hover, .slider:hover {
+      background-color: #f0f0f0;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 5px;
+      text-align: left;
+      color: #333;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #removeLogoBtn {
+      background-color: #ff0000;
+      margin-top: 10px;
+    }
+
+    #removeLogoBtn:hover {
+      background-color: #FF4500;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Kişisel Şişe Tasarımı</h1>
+  <div id="container">
+    <div id="canvas-container">
+      <canvas id="bottleCanvas" width="400" height="500"></canvas>
+    </div>
+
+    <div class="controls">
+      <input type="file" id="logoInput" accept="image/*">
+      <button id="saveBtn">Dosyayı Kaydet</button>
+      <button id="removeLogoBtn">Logo Sil</button>
+
+      <div class="slider-container">
+        <label for="logoWidth">Logo Genişliği:</label>
+        <input type="range" id="logoWidth" class="slider" min="50" max="250" value="150">
+        
+        <label for="logoHeight">Logo Yüksekliği:</label>
+        <input type="range" id="logoHeight" class="slider" min="50" max="250" value="150">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('bottleCanvas');
+    const ctx = canvas.getContext('2d');
+    const logoInput = document.getElementById('logoInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const removeLogoBtn = document.getElementById('removeLogoBtn');
+    const logoWidthSlider = document.getElementById('logoWidth');
+    const logoHeightSlider = document.getElementById('logoHeight');
+
+    const bottleImage = new Image();
+    bottleImage.src = 'sise2.png'; // Şişe görseli yolu
+    bottleImage.onload = () => {
+      ctx.drawImage(bottleImage, 0, 0, 400, 500);
+    };
+
+    let logoImage = null;
+    let logoX = 150, logoY = 200, logoWidth = 150, logoHeight = 150;
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    logoInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          logoImage = new Image();
+          logoImage.src = event.target.result;
+          logoImage.onload = () => {
+            drawCanvas(); 
+          };
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function drawCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); 
+      ctx.drawImage(bottleImage, 0, 0, 400, 500); 
+      if (logoImage) {
+        ctx.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight); 
+      }
+    }
+
+    // LOGO SÜRÜKLE
+    canvas.addEventListener('mousedown', (e) => {
+      const mouseX = e.offsetX;
+      const mouseY = e.offsetY;
+      if (mouseX > logoX && mouseX < logoX + logoWidth && mouseY > logoY && mouseY < logoY + logoHeight) {
+        isDragging = true;
+        offsetX = mouseX - logoX;
+        offsetY = mouseY - logoY;
+      }
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (isDragging && logoImage) {
+        const mouseX = e.offsetX;
+        const mouseY = e.offsetY;
+        logoX = mouseX - offsetX;
+        logoY = mouseY - offsetY;
+        drawCanvas();
+      }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    // Logo silme butonu
+    removeLogoBtn.addEventListener('click', () => {
+      logoImage = null; // LOGOYU KALDIR
+      drawCanvas(); // 
+    });
+
+    // KADYETME BUTONU
+    saveBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'gazoz_tasarimi.png';
+      link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link); 
+      link.click(); 
+      document.body.removeChild(link); 
+    });
+
+    logoWidthSlider.addEventListener('input', () => {
+      logoWidth = logoWidthSlider.value;
+      drawCanvas(); // LOGO BOYUTUNU GÜNCELLE
+    });
+
+    logoHeightSlider.addEventListener('input', () => {
+      logoHeight = logoHeightSlider.value;
+      drawCanvas(); // LOGO BOYUTUNU GÜNCELLE
+    });
+  </script>
+</body>
+</html>
