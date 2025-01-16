@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(45deg, #6C72FF, #5BC0EB);
+    background: linear-gradient(45deg, #ffddee, #ffddee);
     margin: 0;
     padding: 0;
     display: flex;
@@ -28,7 +28,7 @@ h1 {
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-    flex-wrap: nowrap; /* Öğeleri hiçbir zaman alt satıra geçirme */
+    flex-wrap: nowrap;
 }
 
 #canvas-container {
@@ -161,24 +161,32 @@ button:hover {
 
 nav {
     width: 100%;
-    background-color: #333;
+    height: 50px;
+    background-color: #552233;
     padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav ul {
     display: flex;
-    justify-content: center;
     padding: 0;
     margin: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 nav ul li {
     list-style-type: none;
     margin: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav ul li a {
@@ -189,7 +197,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #4CAF50;
+    color: #ffddee;
 }
 
 /* Footer Styles */
@@ -217,16 +225,194 @@ section {
     width: 100%;
     max-width: 1200px;
     border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #f4f4f4;
+}
+
+.s {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.d {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    color: #552233;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+#welcome-text {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 45px;
+    font-style: italic;
+    color: #552233;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #about {
     background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    gap: 70px;
+    text-align: center;
+}
+
+#about img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+#about div {
+    max-width: 400px;
+}
+
+#about p {
+    font-size: 18px;
+    color: #000000;
+    margin: 0;
 }
 
 #projects {
-    background-color: #ddd;
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#projects h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#projects p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+#projects .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pcontainer{
+    display: flex;
+    gap: 50px;
+
+}
+#projects #canvas-container {
+    width: 400px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+#projects canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#projects .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 250px;
+    box-sizing: border-box;
+}
+
+#projects .controls button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#projects #gallery-container {
+    width: 400px;
+    height: 500px;
+    overflow-y: auto;
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#projects .gallery-image {
+    width: calc(20% - 10px);
+    margin-bottom: 10px;
+    cursor: grab;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+#projects .gallery-image:hover {
+    transform: scale(1.05);
+    border-color: #4CAF50;
 }
 
 #contact {
-    background-color: #bbb;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#contact input,
+#contact textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+#contact button {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px;
+    background-color: #ffa8d3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#contact button:hover {
+    background-color: #ff91c6;
+}
+.c{
+    color:#552233;
 }
