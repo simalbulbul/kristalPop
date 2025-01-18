@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kristal Pop</title>
+    <style>
+        @font-face {
+            font-family: "Pixellari";
+            src: url("Pixellari.ttf") format("truetype");
+        }
+
+        body {
+            font-family: "Pixellari";
+            margin: 0;
+            overflow-x: hidden; /* Yatay kaydırmayı önler */
+
+        }
+
+        /* Üst Çubuk */
+        .top-bar {
+            background-color: #ffd56b;
+            color: #d40000;
+            text-align: center;
+            padding: 7.5px 0; 
+            font-size: 21px; 
+            font-weight: bold;
+            letter-spacing: 1.5px; 
+        }
+
+        /* Alt Çubuk */
+        .bottom-bar {
+            background-color: #fff4c2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px; 
+            box-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-bar .logo img {
+            height: 60px; 
+        }
+
+        .bottom-bar .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .bottom-bar .nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 21px; 
+        }
+
+        .bottom-bar .user-cart {
+            display: flex;
+            align-items: center;
+            gap: 22.5px; 
+        }
+
+        .bottom-bar .user-cart .user {
+            display: flex;
+            align-items: center;
+            gap: 15px; 
+            color: #d40000;
+            font-weight: bold;
+            font-size: 21px; 
+        }
+
+        .bottom-bar .user-cart .user img {
+            width: 45px; 
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .bottom-bar .user-cart .cart {
+            display: flex;
+            align-items: center;
+            color: #d40000;
+            font-size: 30px;
+        }
+
+        .bottom-bar .user-cart .cart span {
+            margin-left: 7.5px;
+            font-size: 21px; 
+        }
+
+        .hero-section {
+            background: linear-gradient(to bottom, #d3efff, #ffde91);
+            text-align: center;
+            padding: 50px 20px;
+            color: #000;
+        }
+
+        .hero-section .title-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-section p {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .hero-section .cta-button {
+            font-family: "Pixellari";
+
+            background-color: #d40000;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .hero-section .cta-button:hover {
+            transform: scale(1.1);
+        }
+
+        .cans-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .cans-container img {
+            width: 500px;
+            height: auto;
+            transition: transform 0.2s ease;
+        }
+
+        .cans-container img:hover {
+            transform: translateY(-10px);
+        }
+
+        .aroma-section {
+            padding: 40px 20px;
+            background-color: #fff8d8;
+            margin: 0;
+            padding: 15px;
+            color: #d40000;
+            text-align: center;
+        }
+
+        .aroma-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .fruit-images {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .fruit-images img {
+            width: 120px;
+            height: auto;
+        }
+
+        .why-choose {
+            font-size: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 40px;
+        }
+
+        .info-box {
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #d40000;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .info-box h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            font-size: 16px;
+            line-height: 1.5;}
+
+        .footer {
+        font-family: 'Pixellari', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #dbfdd4;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        }
+
+        .footer-column {
+        display: flex;
+        flex-direction: column;
+        }
+
+        .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 60px;
+        }
+
+        .footer-column li {
+        margin-bottom: 10px;
+        }
+
+        .footer-column a {
+        text-decoration: none;
+        color: #69b569;
+        font-size: 17px;
+        }
+
+        .footer-column a:hover {
+        text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Üst Bar -->
+    <div class="top-bar">
+        250 TL ÜZERİ KARGO BEDAVA !
+    </div>
+
+    <!-- Alt Bar -->
+    <div class="bottom-bar">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="gorseller\logo.png" alt="Kristal Pop Logo">
+        </div>
+
+        <!-- Navigasyon -->
+        <div class="nav">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="bizeulasin.html">Bize Ulaşın</a>
+            <a href="pop.html">Hemen POP'la!</a>
+            <a href="sss.html">SSS</a>
+        </div>
+
+        <div class="user-cart">
+            <div class="user">
+                <img src="https://via.placeholder.com/45" alt="User">
+            </div>
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <img src="gorseller\baslik.png" alt="Tarzını Hemen POP'la!" class="title-image">
+        <p>Kristal POP ile her içecek, tamamen sizin seçiminizle şekillenir.<br>Farklı meyve kombinasyonlarıyla damak tadınıza hitap eden eşsiz bir içecek yaratın!</p>
+        <a href="pop.html">
+            <button class="cta-button">Şimdi Kişiselleştir!</button>
+          </a>
+        <div class="cans-container">
+            <img src="gorseller\kutu1.png" alt="kutu1">
+            <img src="gorseller\kutu1.png" alt="kutu2">
+            <img src="gorseller\kutu1.png" alt="kutu3">
+        </div>
+    </div>
+
+    <section class="aroma-section">
+        <br>
+        <h1>Aroma Seçenekleri</h1>
+        <div class="fruit-images">
+            <img src="gorseller\lime.png" alt="Lime">
+            <img src="gorseller\orange.png" alt="Orange">
+            <img src="gorseller\apple.png" alt="Apple">
+            <img src="gorseller\raspberry.png" alt="Raspberry">
+        </div>
+        <div class="why-choose">NEDEN MEYVE SEÇEBİYORUZ ?</div>
+        <div class="info-boxes">
+            <div class="info-box">
+                <h2>1 Kendi Tarzını POP'la !</h2>
+                <p>Meyve seçimiyle gazozunuzu tamamen kendi damak tadınıza göre kişiselleştirebilirsiniz. Sizin tarzınız, sizin gazozunuz!</p>
+            </div>
+            <div class="info-box">
+                <h2>2 Kendi Tarifini POP'la !</h2>
+                <p>Farklı meyveleri karıştırarak tamamen size özel tarifler oluşturun!</p>
+            </div>
+            <div class="info-box">
+                <h2>3 Kendi Tarzını POP'la !</h2>
+                <p>Hediye Deneyimini POP'la! Özel tariflerinizi sevdiklerinize hediye edin.</p>
+            </div>
+            <div class="info-box">
+                <h2>4 Kendi Tarzını POP'la !</h2>
+                <p>Farklı meyveleri karıştırarak tamamen size özel tarifler oluşturun!</p>
+            </div>
+            <p>  </p>
+            <p>  </p>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-column">
+          <ul>
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Hakkımızda</a></li>
+            <li><a href="#">Hemen POP'la!</a></li>
+            <li><a href="#">SSS</a></li>
+            <li><a href="#">Bize Ulaşın</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">Cookies Policy</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Tiktok</a></li>
+          </ul>
+        </div>
+      </footer>
+</body>
+</html>

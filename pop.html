@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kristal Pop</title>
+    <style>
+        @font-face {
+            font-family: "Pixellari";
+            src: url("Pixellari.ttf") format("truetype");
+        }
+
+        body {
+            font-family: "Pixellari";
+            margin: 0;
+        }
+
+        .top-bar {
+            background-color: #ffd56b;
+            color: #d40000;
+            text-align: center;
+            padding: 7.5px 0;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .bottom-bar {
+            background-color: #fff4c2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            box-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-bar .logo img {
+            height: 60px;
+        }
+
+        .bottom-bar .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .bottom-bar .nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 21px;
+        }
+
+        .bottom-bar .user-cart {
+            display: flex;
+            align-items: center;
+            gap: 22.5px;
+        }
+
+        .bottom-bar .user-cart .user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #d40000;
+            font-weight: bold;
+            font-size: 21px;
+        }
+
+        .bottom-bar .user-cart .user img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .bottom-bar .user-cart .cart {
+            display: flex;
+            align-items: center;
+            color: #d40000;
+            font-size: 30px;
+        }
+
+        .bottom-bar .user-cart .cart span {
+            margin-left: 7.5px;
+            font-size: 21px;
+        }
+
+        .footer {
+            font-family: 'Pixellari', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #dbfdd4;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 60px;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: #69b569;
+            font-size: 17px;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+ 
+        h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1400px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    flex-wrap: nowrap;
+}
+
+#canvas-container {
+    width: 400px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-right: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 250px;
+    box-sizing: border-box;
+    margin: 20px;
+}
+
+.controls button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.slider-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.slider {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: black;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.slider:hover {
+    background-color: #f0f0f0;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #333;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#removeLogoBtn {
+    background-color: #ff0000;
+    margin-top: 10px;
+}
+
+#removeLogoBtn:hover {
+    background-color: #FF4500;
+}
+
+#gallery-container {
+    width: 400px;
+    height: 500px;
+    overflow-y: auto;
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-left: 30px;
+}
+
+.gallery-image {
+    width: calc(20% - 10px);
+    margin-bottom: 10px;
+    cursor: grab;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.gallery-image:hover {
+    transform: scale(1.05);
+    border-color: #4CAF50;
+}
+
+.logo-controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-controls label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.logo-controls input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+#projects {
+    background-color:#fff9cc;
+    padding: 50px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#projects h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#projects p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+#projects .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pcontainer{
+    display: flex;
+    gap: 50px;
+
+}
+#projects #canvas-container {
+    width: 700px;
+    height: 550px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+#projects canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#projects .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 250px;
+    box-sizing: border-box;
+}
+
+#projects .controls button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#projects #gallery-container {
+    width: 400px;
+    height: 500px;
+    overflow-y: auto;
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#projects .gallery-image {
+    width: calc(20% - 10px);
+    margin-bottom: 10px;
+    cursor: grab;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+#projects .gallery-image:hover {
+    transform: scale(1.05);
+    border-color: #4CAF50;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        250 TL ÜZERİ KARGO BEDAVA !
+    </div>
+
+    <div class="bottom-bar">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="gorseller\logo.png" alt="Kristal Pop Logo">
+        </div>
+
+        <!-- Navigasyon -->
+        <div class="nav">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="bizeulasin.html">Bize Ulaşın</a>
+            <a href="pop.html">Hemen POP'la!</a>
+            <a href="sss.html">SSS</a>
+        </div>
+
+        <!-- Kullanıcı ve Sepet -->
+        <div class="user-cart">
+            <div class="user">
+                <img src="https://via.placeholder.com/45" alt="User">
+            </div>
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>0</span>
+            </div>
+        </div>
+    </div>
+
+      <div class="pop">
+        <script>
+            document.querySelectorAll('nav ul li a').forEach(anchor => {
+              anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+        
+                if (targetSection) {
+                  targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                  });
+                }
+              });
+            });
+          </script>
+        
+        
+          <section id="projects">
+            <div class="pcontainer">
+            
+            <div id="canvas-container">
+              <canvas id="bottleCanvas" width="800" height="550"></canvas>
+            </div>
+            <div class="controls">
+              <button id="removeLogoBtn">Logo Sil</button>
+              <div id="logo-controls-container"></div> <!-- Logo controls buraya eklenecek -->
+            </div>
+        
+            <div id="gallery-container">
+              <!-- Fotoğraf galerisi burada gösterilecek -->
+            </div>
+          </div>
+          </section>
+        
+        
+        
+          
+          <script>
+            const canvas = document.getElementById('bottleCanvas');
+            const ctx = canvas.getContext('2d');
+            const galleryContainer = document.getElementById('gallery-container');
+            const logoControlsContainer = document.getElementById('logo-controls-container');
+        
+            const bottleImage = new Image();
+            bottleImage.src = 'gorseller/pop1.png'; // Şişe görseli yolu
+            bottleImage.onload = () => {
+              drawCanvas();
+            };
+        
+            let logos = [];  // Logo listesi, birden fazla logo eklenebilecek
+            let draggedLogo = null; // Sürüklenen logo
+        
+            function drawCanvas() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.drawImage(bottleImage, 0, 0, 800, 550);
+              logos.forEach((logo) => {
+                ctx.drawImage(logo.image, logo.x, logo.y, logo.width, logo.height);
+              });
+            }
+        
+            function loadGalleryImages() {
+              const imagePaths = [
+                'album/meyve/cilek.png',
+                'album/meyve/cilek2.png',
+                'album/meyve/cilek3.png',
+                'album/meyve/elma.png',
+                'album/meyve/kalp.png',
+                'album/meyve/karpuz.png',
+                'album/meyve/karpuz2.png',
+                'album/meyve/karpuz3.png',
+                'album/meyve/lime.png',
+                'album/meyve/limon.png',
+                'album/meyve/limon2.png',
+                'album/meyve/limon3.png',
+                'album/meyve/mandalina.png',
+                'album/meyve/portakal.png',
+                'album/meyve/portakal2.png',
+                'album/meyve/portakal3.png',
+                'album/1.png',
+                'album/2.png',
+                'album/3.png',
+                'album/4.png',
+                'album/5.png',
+                'album/6.png',
+                'album/7.png',
+                'album/karakterler/karakter1.png',
+                'album/karakterler/karakter2.png',
+                'album/karakterler/karakter3.png',
+                'album/karakterler/karakter4.png',
+                'album/karakterler/karakter5.png',
+                'album/karakterler/karakter6.png',
+                'album/karakterler/karakter7.png',
+                'album/karakterler/karakter8.png'
+              ];
+        
+              imagePaths.forEach((path) => {
+                const img = document.createElement('img');
+                img.src = path;
+                img.className = 'gallery-image';
+                img.draggable = true;
+        
+                img.addEventListener('dragstart', (e) => {
+                  e.dataTransfer.setData('text/plain', path);
+                });
+        
+                galleryContainer.appendChild(img);
+              });
+            }
+        
+            canvas.addEventListener('dragover', (e) => {
+              e.preventDefault();
+            });
+        
+            canvas.addEventListener('drop', (e) => {
+              e.preventDefault();
+              const path = e.dataTransfer.getData('text/plain');
+              if (path) {
+                const newLogo = new Image();
+                newLogo.src = path;
+                newLogo.onload = () => {
+                  const logo = {
+                    image: newLogo,
+                    x: 150,
+                    y: 200,
+                    width: 150,
+                    height: 150
+                  };
+                  logos.push(logo);
+                  drawCanvas();
+                  createLogoControls(logo);
+                };
+              }
+            });
+            let isDragging = false;
+        
+            canvas.addEventListener('mousedown', (e) => {
+              const mouseX = e.offsetX;
+              const mouseY = e.offsetY;
+        
+              logos.forEach((logo) => {
+                if (mouseX >= logo.x && mouseX <= logo.x + logo.width &&
+                  mouseY >= logo.y && mouseY <= logo.y + logo.height) {
+                  draggedLogo = logo;
+                  isDragging = true;
+                }
+              });
+            });
+        
+            canvas.addEventListener('mousemove', (e) => {
+              if (isDragging && draggedLogo) {
+                const mouseX = e.offsetX;
+                const mouseY = e.offsetY;
+                draggedLogo.x = mouseX - draggedLogo.width / 2;
+                draggedLogo.y = mouseY - draggedLogo.height / 2;
+                drawCanvas();
+              }
+            });
+        
+            canvas.addEventListener('mouseup', () => {
+              isDragging = false;
+              draggedLogo = null;
+            });
+        
+            function createLogoControls(logo) {
+              const controlsDiv = document.createElement('div');
+              controlsDiv.classList.add('logo-controls');
+              controlsDiv.innerHTML = ` 
+                <label>Width:</label>
+                <input type="range" class="logo-width" min="50" max="250" value="${logo.width}">
+                <label>Height:</label>
+                <input type="range" class="logo-height" min="50" max="250" value="${logo.height}">
+              `;
+        
+              controlsDiv.querySelector('.logo-width').addEventListener('input', (e) => {
+                logo.width = parseInt(e.target.value, 10);
+                drawCanvas();
+              });
+        
+              controlsDiv.querySelector('.logo-height').addEventListener('input', (e) => {
+                logo.height = parseInt(e.target.value, 10);
+                drawCanvas();
+              });
+        
+              logoControlsContainer.appendChild(controlsDiv);
+            }
+        
+            // Silme işlemi
+            document.getElementById('removeLogoBtn').addEventListener('click', () => {
+              logos = [];
+              drawCanvas();
+              logoControlsContainer.innerHTML = '';
+            });
+        
+            loadGalleryImages();
+          </script>
+      </div>
+      
+    <footer class="footer">
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">Hemen POP'la!</a></li>
+                <li><a href="#">SSS</a></li>
+                <li><a href="#">Bize Ulaşın</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Refund Policy</a></li>
+                <li><a href="#">Cookies Policy</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Tiktok</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

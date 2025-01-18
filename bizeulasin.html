@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kristal Pop</title>
+    <style>
+        @font-face {
+            font-family: "Pixellari";
+            src: url("Pixellari.ttf") format("truetype");
+        }
+
+        body {
+            font-family: "Pixellari";
+            margin: 0;
+        }
+
+        .top-bar {
+            background-color: #ffd56b;
+            color: #d40000;
+            text-align: center;
+            padding: 7.5px 0;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        .bottom-bar {
+            background-color: #fff4c2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            box-shadow: 0 3px 7.5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-bar .logo img {
+            height: 60px;
+        }
+
+        .bottom-bar .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .bottom-bar .nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 21px;
+        }
+
+        .bottom-bar .user-cart {
+            display: flex;
+            align-items: center;
+            gap: 22.5px;
+        }
+
+        .bottom-bar .user-cart .user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #d40000;
+            font-weight: bold;
+            font-size: 21px;
+        }
+
+        .bottom-bar .user-cart .user img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .bottom-bar .user-cart .cart {
+            display: flex;
+            align-items: center;
+            color: #d40000;
+            font-size: 30px;
+        }
+
+        .bottom-bar .user-cart .cart span {
+            margin-left: 7.5px;
+            font-size: 21px;
+        }
+
+        .footer {
+            font-family: 'Pixellari', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #dbfdd4;
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 60px;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: #69b569;
+            font-size: 17px;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+        body {
+  font-family: 'Pixellari', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff9cc;
+}
+
+.bize-ulasin {
+  background-color: #fff9cc;
+  padding: 50px;
+  text-align: center;
+}
+
+.bize-ulasin h1 {
+  color: #69b569;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  flex-wrap: wrap; 
+  gap: 20px; 
+}
+
+.contact-item {
+  flex: 1;
+  max-width: 300px; 
+  text-align: center; 
+}
+
+.contact-item h2 {
+  color: #cc4444;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.contact-item p {
+  color: #333333;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Üst Bar -->
+    <div class="top-bar">
+        250 TL ÜZERİ KARGO BEDAVA !
+    </div>
+
+    <!-- Alt Bar -->
+    <div class="bottom-bar">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="gorseller\logo.png" alt="Kristal Pop Logo">
+        </div>
+
+        <!-- Navigasyon -->
+        <div class="nav">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+            <a href="bizeulasin.html">Bize Ulaşın</a>
+            <a href="pop.html">Hemen POP'la!</a>
+            <a href="sss.html">SSS</a>
+        </div>
+
+        <div class="user-cart">
+            <div class="user">
+                <img src="https://via.placeholder.com/45" alt="User">
+            </div>
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>0</span>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="bize-ulasin">
+        <h1>Bize Ulaşın</h1>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h2>Konum</h2>
+            <p>123 Pop Sokağı, Gazoz Şehri, Türkiye</p>
+          </div>
+          <div class="contact-item">
+            <h2>E-Posta</h2>
+            <p>info@popgazoz.com</p>
+            <p>destek@popgazoz.com</p>
+          </div>
+          <div class="contact-item">
+            <h2>Telefon</h2>
+            <p>+90 555 123 45 67</p>
+            <p>+90 212 987 65 43</p>
+          </div>
+        </div>
+      </section>
+      
+      
+    <footer class="footer">
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#">Hakkımızda</a></li>
+                <li><a href="#">Hemen POP'la!</a></li>
+                <li><a href="#">SSS</a></li>
+                <li><a href="#">Bize Ulaşın</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Refund Policy</a></li>
+                <li><a href="#">Cookies Policy</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Tiktok</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
