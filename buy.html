@@ -285,11 +285,11 @@
 
         <div class="user-cart">
             <div class="user">
-                <img src="https://via.placeholder.com/45" alt="User">
+                <img src="gorseller\k.png" alt="">
             </div>
             <div class="cart">
                 <i class="fas fa-shopping-cart"></i>
-                <span>0</span>
+                <span>   </span>
             </div>
         </div>
     </div>
@@ -322,13 +322,16 @@
         <div class="order-details">
             <label for="name">Ad Soyad:</label>
             <input type="text" id="name" placeholder="Adınızı ve Soyadınızı Giriniz">
-
+        
             <label for="email">E-posta:</label>
             <input type="email" id="email" placeholder="E-posta Adresinizi Giriniz">
-
+        
+            <label for="phone">Telefon Numarası:</label>
+            <input type="tel" id="phone" placeholder="Telefon Numaranızı Giriniz" pattern="[0-9]{10}" title="Telefon numarası 10 haneli olmalıdır.">
+        
             <label for="address">Adres:</label>
             <input type="text" id="address" placeholder="Adresinizi Giriniz">
-
+        
             <label for="payment-method">Ödeme Yöntemi:</label>
             <select id="payment-method" onchange="handlePaymentChange()">
                 <option value="">Seçiniz</option>
@@ -337,6 +340,7 @@
                 <option value="kart">Kart ile Ödeme</option>
             </select>
         </div>
+        
 
         <div id="payment-info" class="payment-info"></div>
 <br>

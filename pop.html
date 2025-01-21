@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -208,12 +209,10 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #45a049;
-}
 
 #removeLogoBtn {
-    background-color: #ff0000;
+  font-family: "Pixellari";
+  background-color: #ff0000;
     margin-top: 10px;
 }
 
@@ -362,6 +361,40 @@ button:hover {
     border-color: #4CAF50;
 }
 
+.cta-button {
+            font-family: "Pixellari";
+margin: 30px;
+            background-color: #d40000;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+        }
+
+        .buy{
+          flex: 1;
+          display: flex;
+          justify-content: center; 
+          background-color: #ffd56b;
+        }
+        
+        #undoLastLogoBtn {
+          font-family: "Pixellari";
+  background-color: #ff0000;
+    margin-top: 10px;
+}
+
+#undoLastLogoBtn:hover {
+  background-color: #FF4500;
+
+}
 
     </style>
 </head>
@@ -389,11 +422,11 @@ button:hover {
         <!-- Kullanıcı ve Sepet -->
         <div class="user-cart">
             <div class="user">
-                <img src="https://via.placeholder.com/45" alt="User">
+              <img src="gorseller\k.png" alt="">
             </div>
             <div class="cart">
                 <i class="fas fa-shopping-cart"></i>
-                <span>0</span>
+                <span>   </span>
             </div>
         </div>
     </div>
@@ -423,7 +456,9 @@ button:hover {
               <canvas id="bottleCanvas" width="800" height="550"></canvas>
             </div>
             <div class="controls">
-              <button id="removeLogoBtn">Logo Sil</button>
+              <button id="removeLogoBtn">Hepsini Temizle</button>
+              <button id="undoLastLogoBtn" class="btn">Geri Al</button>
+
               <div id="logo-controls-container"></div> <!-- Logo controls buraya eklenecek -->
             </div>
         
@@ -433,7 +468,12 @@ button:hover {
           </div>
           </section>
         
-        
+        <section class="buy">
+          <a href="buy.html">
+            <button class="cta-button">Satın al</button>
+          </a>
+
+        </section>
         
           
           <script>
@@ -585,12 +625,27 @@ button:hover {
               logoControlsContainer.appendChild(controlsDiv);
             }
         
-            // Silme işlemi
-            document.getElementById('removeLogoBtn').addEventListener('click', () => {
-              logos = [];
-              drawCanvas();
-              logoControlsContainer.innerHTML = '';
-            });
+          // Mevcut kod
+document.getElementById('removeLogoBtn').addEventListener('click', () => {
+    logos = []; // Tüm logoları temizler
+    drawCanvas();
+    logoControlsContainer.innerHTML = '';
+});
+
+// Son ekleneni silmek için yeni kod
+document.getElementById('undoLastLogoBtn').addEventListener('click', () => {
+    if (logos.length > 0) {
+        logos.pop(); // Son ekleneni siler
+        drawCanvas();
+        logoControlsContainer.innerHTML = ''; // Geri kalan logoları güncelle
+        logos.forEach((logo, index) => {
+            // Geriye kalan logoları tekrar oluşturabilir
+            const control = createLogoControl(index, logo); 
+            logoControlsContainer.appendChild(control);
+        });
+    }
+});
+
         
             loadGalleryImages();
           </script>
